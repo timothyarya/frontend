@@ -1,21 +1,18 @@
 'use client'
 
 import ThemeToggler from "./components/ThemeToggler"
-import FileList from "./components/UI/FileList"
+import FileUploader from "./components/UI/FileUploader"
+
 import Header from "./components/UI/Header"
-import {
-  handleDrop
-} from "./handler/handler"
 
 const mainPage = () => {
 
   return (
     <main
-    onDrop={handleDrop}
     className=""
     >
       <Header />
-      <FileList />
+      <FileUploader />
       <section>
         <div>
           

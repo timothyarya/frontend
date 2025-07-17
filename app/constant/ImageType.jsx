@@ -6,11 +6,6 @@ export const ImageType = [
         ".gif",
         ".webp",
         ".svg",
-        ".tiff",
-        ".raw",
-        ".ico",
-        ".bmp",
         ".heic",
         ".heif",
-        ".webm"
     ]
