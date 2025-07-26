@@ -2,7 +2,7 @@
 
 import ThemeToggler from "./components/ThemeToggler"
 import FileUploader from "./components/UI/FileUploader"
-
+import TestSwal from "./components/testswal"
 import Header from "./components/UI/Header"
 
 const mainPage = () => {
@@ -13,6 +13,7 @@ const mainPage = () => {
     >
       <Header />
       <FileUploader />
+      <TestSwal />
       <section>
         <div>
           

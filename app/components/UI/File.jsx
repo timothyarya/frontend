@@ -5,26 +5,30 @@ import Link from "next/link"
 
 const File = ({file, filename, fromType, index}) => {
     const [convertTo, setConvertTo] = useState('')
-    const [convertFrom, setConvertFrom] = useState('')
+    const isDone = useRef(false)
     const [convertLink, setConvertLink] = useState('')
 
     const handleToType = (type) => {
         setConvertTo(type)
     }
 
+    const handleConvert = async () => {
+        let params = convertApi.createParams()
+        params.add('file', file)
+        let res = await convertApi.convert('png', 'pdf', params)
+        setConvertLink(res.files[0].Url)  
+    }
+
     useEffect(() => {
         try {
-            const handleConvert = async () => {
-                let params = convertApi.createParams()
-                params.add('file', file)
-                let res = await convertApi.convert('png', 'pdf', params)
-                setConvertLink(res.files[0].Url)  
+            if (!isDone.current) {
+                handleConvert()
+                isDone.current = true
             }
-            handleConvert()
         } catch (err) {
             console.log(err)
         }
-    }, [])
+    }, [isDone])
     
 
     return (
@@ -42,6 +46,10 @@ const File = ({file, filename, fromType, index}) => {
                 <TypeSelector toType={handleToType} />
             </div>
             
+            <button>
+                Convert
+            </button>
+
                 <Link
                 href={convertLink}
                 target="_blank"
@@ -49,6 +57,7 @@ const File = ({file, filename, fromType, index}) => {
                 >
                     Download
                 </Link>
+
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import File from "./File"
 import { ImageType } from "@/app/constant/ImageType"
 
@@ -18,6 +18,10 @@ const FileUploader = () => {
     const handleConvertRef = () => {
         convertFileRef.current.click()
     }
+
+    // useEffect(() => {
+    //     console.log(files)
+    // }, [files])
 
     return (
         <section className="flex flex-col gap-5 items-center">
