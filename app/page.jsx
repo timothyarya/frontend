@@ -14,12 +14,6 @@ const mainPage = () => {
       <Header />
       <FileUploader />
       <TestSwal />
-      <section>
-        <div>
-          
-
-        </div>  
-      </section>
     </main>
   )
 }
