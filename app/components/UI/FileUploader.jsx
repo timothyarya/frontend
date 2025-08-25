@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import File from "./File"
+import Swal from "sweetalert2"
 import { ImageType } from "@/app/constant/ImageType"
 
 const FileUploader = () => {
@@ -19,13 +20,32 @@ const FileUploader = () => {
         convertFileRef.current.click()
     }
 
+    const swalInputFile = async () => {
+        const {value: file} = await Swal.fire({
+            title: "Select Files",
+            input: "file",
+            inputAttributes: {
+                'accept': `image/${ImageType.join(',')}`,
+                'multiple': 'true'
+            }
+        })
+         
+        if (file)
+        {
+            setFiles(file)
+            Swal.fire({
+                title: 'File Uploaded',
+                icon: 'success'
+            })
+        }
+    }
     // useEffect(() => {
     //     console.log(files)
     // }, [files])
 
     return (
         <section className="flex flex-col gap-5 items-center">
-            <form
+            {/* <form
             style={{display: 'none'}}
             >
                 <input
@@ -35,7 +55,7 @@ const FileUploader = () => {
                 onChange={handleSetFiles}
                 ref={inputFileRef}
                 />
-            </form>
+            </form> */}
 
             <div>
                 {
@@ -50,11 +70,15 @@ const FileUploader = () => {
                     ))
                 }
             </div>
-            <button
+            {/* <button
             onClick={handleRef}
             >
                 Add Files
-            </button>
+            </button> */}
+
+            <button
+            onClick={swalInputFile}
+            >Add Files</button>
             
         </section>
     )
